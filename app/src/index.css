@@ -1,7 +1,12 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
 
-:root { font-family: "Inter Variable", Inter, sans-serif; color: #20251e; background: #f4f5ef; font-synthesis: none; text-rendering: optimizeLegibility; }
+:root { 
+    font-family: "Inter Variable", Inter, sans-serif; 
+    color: #20251e; background: #f4f5ef; 
+    font-synthesis: none; 
+    text-rendering: optimizeLegibility; 
+}
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; }
 button, input { font: inherit; }

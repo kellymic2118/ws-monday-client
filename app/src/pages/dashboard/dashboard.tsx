@@ -1,0 +1,55 @@
+import { Layout } from "../../components/layout/layout";
+import { MarketBrief } from "../../components/cards/market-cards/market-brief";
+import { TradeCard } from "../../components/cards/market-cards/trade-card";
+import { WatchlistCard } from "../../components/cards/market-cards/watchlist-card";
+import { PortfolioCard } from "../../components/cards/portfolio-cards/portfolio-card";
+import { SummaryCards } from "../../components/cards/portfolio-cards/summary-cards";
+import { useAuth0 } from "@auth0/auth0-react";
+import NotAuthenticated from "../no-auth/notAuthenticated";
+import { Button } from "../../components/ui/button";
+
+export default function Dashboard() {
+  const {
+    isLoading,
+    isAuthenticated,
+    error,
+    loginWithRedirect: login,
+    logout: auth0Logout,
+    user,
+  } = useAuth0();
+
+  if (!isAuthenticated) {
+    return <NotAuthenticated />;
+  }
+
+  const logout = () =>
+    auth0Logout({ logoutParams: { returnTo: window.location.origin } });
+
+  return (
+    <>
+      <Layout user={user} onLogout={logout}>
+        <div className="page-wrap">
+          <div className="page-heading">
+            <div>
+              <p className="eyebrow">Tuesday, November 19, 2024</p>
+              <h1>
+                Good morning, Kelly <span>✦</span>
+              </h1>
+              <p className="subheading">Here&apos;s your financial pulse.</p>
+            </div>
+            <Button className="deposit-button">
+              <span aria-hidden="true">+</span> Add funds
+            </Button>
+          </div>
+          <SummaryCards />
+          <div className="content-grid">
+            <PortfolioCard />
+            <WatchlistCard />
+            <TradeCard />
+          </div>
+          <MarketBrief />
+        </div>
+      </Layout>
+    </>
+  );
+}
