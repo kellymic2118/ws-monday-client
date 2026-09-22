@@ -1,5 +1,6 @@
 @import "tailwindcss";
 :root { --brand-name: "Wall Street Monday"; }
+.market-ticker{display:flex;position:relative;z-index:20;overflow:hidden;height:34px;border-bottom:1px solid #dfe5d4;background:#20251e;color:#f4f5ef}.ticker-track{display:flex;min-width:max-content;align-items:center;animation:ticker-scroll 38s linear infinite}.ticker-item{display:flex;align-items:center;gap:9px;padding:0 27px;border-right:1px solid #4a5144;font-size:10px;letter-spacing:.06em;white-space:nowrap}.ticker-symbol{color:#aeb8a5;font-size:9px;font-weight:750;letter-spacing:.12em}.ticker-item strong{font-size:11px;font-weight:650;letter-spacing:.02em}.ticker-positive,.ticker-negative{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700}.ticker-positive{color:#c9e879}.ticker-negative{color:#e49a8d}.ticker-item svg{width:12px;height:12px;stroke-width:2.2}@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.ticker-track{animation-play-state:paused}} 
 .brand-mark span { font-size: 0; }
 .brand-mark span::after { content: "WSM"; font-size: 9px; }
 .brand-mark strong { font-size: 0; }
