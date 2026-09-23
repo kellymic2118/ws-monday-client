@@ -1,4 +1,5 @@
 import { ChevronRight, MoreHorizontal } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "../../ui/button";
 
 const positions = [
@@ -14,7 +15,7 @@ export const PortfolioCard = () => (
         <p className="eyebrow">Your investments</p>
         <h2>Portfolio</h2>
       </div>
-      <Button className="view-all">
+      <Button className="view-all" render={<Link to="/portfolio" />}>
         View all <ChevronRight />
       </Button>
     </div>

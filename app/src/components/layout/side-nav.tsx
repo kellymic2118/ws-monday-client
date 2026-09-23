@@ -9,13 +9,14 @@ export const SideNav = ({ user, onLogout }: SideNavProps) => {
         <aside className="sidebar">
             <div className="brand-mark">
                 <span>NS</span>
-                <strong>Wall Street Monday</strong>
+                {/* Keep this <strong> tag for content and styling purposes - it is NOT an empty tag */}
+                <strong></strong> 
             </div>
             <nav className="main-nav">
                 <p className="nav-label">Workspace</p>
                 <NavLink to="/" className={({ isActive }) => `nav-item${isActive ? " active" : ""}`} end><LayoutGrid /> Overview</NavLink>
-                <a className="nav-item"><Eye /> Watchlist <span className="nav-count">5</span></a>
-                <a className="nav-item"><WalletCards /> Portfolio</a>
+                <NavLink to="/watchlist" className={({ isActive }) => `nav-item${isActive ? " active" : ""}`}><Eye /> Watchlist <span className="nav-count">5</span></NavLink>
+                <NavLink to="/portfolio" className={({ isActive }) => `nav-item${isActive ? " active" : ""}`}><WalletCards /> Portfolio</NavLink>
                 <a className="nav-item"><Clock3 /> Activity</a>
                 <p className="nav-label nav-spaced">Tools</p>
                 <NavLink to="/markets" className={({ isActive }) => `nav-item${isActive ? " active" : ""}`}><TrendingUp /> Markets</NavLink>

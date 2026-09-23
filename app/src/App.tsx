@@ -6,6 +6,7 @@ import { Routing } from "./routing/routing";
 import { useAuth0 } from "@auth0/auth0-react";
 import NotAuthenticated from "./pages/no-auth/notAuthenticated";
 import { Layout } from "./components/layout/layout";
+import { PreviousNavigationProvider } from "./components/previous/previous-navigation";
 
 function App() {
   const { isLoading, isAuthenticated, logout, user } = useAuth0();
@@ -18,14 +19,16 @@ function App() {
     <ThemeProvider defaultTheme="system" storageKey="ws-monday-ui-theme">
       <BrowserRouter>
         <MarketTicker />
-        <Layout
-          user={user}
-          onLogout={() =>
-            logout({ logoutParams: { returnTo: window.location.origin } })
-          }
-        >
-          <Routing />
-        </Layout>
+        <PreviousNavigationProvider>
+          <Layout
+            user={user}
+            onLogout={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
+            <Routing />
+          </Layout>
+        </PreviousNavigationProvider>
       </BrowserRouter>
     </ThemeProvider>
   );

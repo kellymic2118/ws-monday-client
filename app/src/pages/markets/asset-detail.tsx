@@ -1,11 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { ArrowDownRight, ArrowLeft, ArrowUpRight, ChevronDown, Maximize2, PencilRuler, Plus, Search, ShieldCheck, Star, X } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, ChevronDown, Maximize2, PencilRuler, Plus, Search, ShieldCheck, Star, X } from "lucide-react";
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
 import { ChartTimeRangeControls, PriceChart, type ChartTimeRange, type ChartType } from "../../components/markets/price-chart";
+import { PreviousNav } from "../../components/previous/previous-nav";
 import NotAuthenticated from "../no-auth/notAuthenticated";
 import { findAsset, marketAssets } from "./market-data";
 import "./markets.css";
@@ -13,6 +14,7 @@ import "./chart-features.css";
 import "./chart-type-picker.css";
 import "./chart-range.css";
 import "./chart-height.css";
+import "../../components/previous/previous-nav.css";
 
 const financials = [
   ["Revenue", "$35.08B", "+94.2%"],
@@ -63,7 +65,7 @@ export default function AssetDetail() {
   return (
     
       <main className="markets-page asset-detail-page">
-        <Link className="back-link" to="/markets"><ArrowLeft /> Back to markets</Link>
+        <PreviousNav fallback="/markets" label="Back to markets" />
         <div className="asset-detail-heading"><div className="asset-detail-title"><span className="asset-logo large">{asset.symbol.slice(0, 1)}</span><div><p className="eyebrow">{asset.exchange} / {asset.sector}</p><h1>{asset.name} <span>{asset.symbol}</span></h1></div></div><div className="asset-actions"><Button variant="outline" size="icon-sm" aria-label="Add to watchlist"><Star /></Button><Button><Plus /> Trade {asset.symbol}</Button></div></div>
         <section className="asset-overview"><div><span className="asset-price-label">{asset.symbol} price</span><strong className="asset-price">{asset.price}</strong><span className={asset.positive ? "market-positive asset-change" : "market-negative asset-change"}><ChangeIcon /> {asset.change} ({asset.changePercent}) today</span></div><div className="chart-range"><Button variant="ghost" size="xs">1D</Button><Button variant="ghost" size="xs">1W</Button><Button size="xs">1M</Button><Button variant="ghost" size="xs">1Y</Button><Button variant="ghost" size="xs">ALL</Button></div></section>
         <section className="detail-chart-panel">
