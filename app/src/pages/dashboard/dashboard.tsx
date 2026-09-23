@@ -10,46 +10,36 @@ import { Button } from "../../components/ui/button";
 
 export default function Dashboard() {
   const {
-    isLoading,
     isAuthenticated,
-    error,
-    loginWithRedirect: login,
-    logout: auth0Logout,
-    user,
   } = useAuth0();
 
   if (!isAuthenticated) {
     return <NotAuthenticated />;
   }
 
-  const logout = () =>
-    auth0Logout({ logoutParams: { returnTo: window.location.origin } });
-
   return (
     <>
-      <Layout user={user} onLogout={logout}>
-        <div className="page-wrap">
-          <div className="page-heading">
-            <div>
-              <p className="eyebrow">Tuesday, November 19, 2024</p>
-              <h1>
-                Good morning, Kelly <span>✦</span>
-              </h1>
-              <p className="subheading">Here&apos;s your financial pulse.</p>
-            </div>
-            <Button className="deposit-button">
-              <span aria-hidden="true">+</span> Add funds
-            </Button>
+      <div className="page-wrap">
+        <div className="page-heading">
+          <div>
+            <p className="eyebrow">Tuesday, November 19, 2024</p>
+            <h1>
+              Good morning, Kelly <span>✦</span>
+            </h1>
+            <p className="subheading">Here&apos;s your financial pulse.</p>
           </div>
-          <SummaryCards />
-          <div className="content-grid">
-            <PortfolioCard />
-            <WatchlistCard />
-            <TradeCard />
-          </div>
-          <MarketBrief />
+          <Button className="deposit-button">
+            <span aria-hidden="true">+</span> Add funds
+          </Button>
         </div>
-      </Layout>
+        <SummaryCards />
+        <div className="content-grid">
+          <PortfolioCard />
+          <WatchlistCard />
+          <TradeCard />
+        </div>
+        <MarketBrief />
+      </div>
     </>
   );
 }

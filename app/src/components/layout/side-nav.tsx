@@ -1,5 +1,6 @@
 import { ChevronRight, Clock3, Eye, LayoutGrid, LogOut, MoreHorizontal, Settings2, SlidersHorizontal, TrendingUp, WalletCards } from "lucide-react";
 import { Button } from "../ui/button";
+import { NavLink } from "react-router-dom";
 
 type SideNavProps = { user?: { email?: string; name?: string }; onLogout: () => void };
 
@@ -12,12 +13,12 @@ export const SideNav = ({ user, onLogout }: SideNavProps) => {
             </div>
             <nav className="main-nav">
                 <p className="nav-label">Workspace</p>
-                <a className="nav-item active"><LayoutGrid /> Overview</a>
+                <NavLink to="/" className={({ isActive }) => `nav-item${isActive ? " active" : ""}`} end><LayoutGrid /> Overview</NavLink>
                 <a className="nav-item"><Eye /> Watchlist <span className="nav-count">5</span></a>
                 <a className="nav-item"><WalletCards /> Portfolio</a>
                 <a className="nav-item"><Clock3 /> Activity</a>
                 <p className="nav-label nav-spaced">Tools</p>
-                <a className="nav-item"><TrendingUp /> Markets</a>
+                <NavLink to="/markets" className={({ isActive }) => `nav-item${isActive ? " active" : ""}`}><TrendingUp /> Markets</NavLink>
                 <a className="nav-item"><SlidersHorizontal /> Screeners</a>
             </nav>
             <div className="sidebar-bottom">
